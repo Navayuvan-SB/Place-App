@@ -35,6 +35,9 @@ load_dotenv()
 # Application definition
 
 INSTALLED_APPS = [
+    'leaflet',
+    'django.contrib.gis',
+    'place.apps.PlaceConfig'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +82,7 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'placeapp',
         'USER': os.environ['DB_USER'],
         'HOST': 'localhost',
