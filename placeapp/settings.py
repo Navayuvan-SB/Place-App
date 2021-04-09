@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +28,8 @@ SECRET_KEY = '1x=&bu-ovh(j*h$sp+*@ur5p6qfzi*iweiz*y7&)z^4)o2i%(o'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+load_dotenv()
 
 
 # Application definition
@@ -75,8 +79,11 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'placeapp',
+        'USER': os.environ['DB_USER'],
+        'HOST': 'localhost',
+        'PASSWORD': os.environ['DB_PASSWORD']
     }
 }
 
@@ -105,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
