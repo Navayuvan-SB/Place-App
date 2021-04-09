@@ -41,8 +41,8 @@
 
     <div class="actions">
 
-        <a href="">Edit</a>
-        <a href="">Delete</a>
+        <a href="{% url 'edit-place' place.pk %}">Edit</a>
+        <a href="{% url 'delete-place' place.pk %}">Delete</a>
 
     </div>
 

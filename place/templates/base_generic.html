@@ -18,6 +18,13 @@
       type="text/css"
       href="{% static 'css/style.css' %}"
     />
+
+    
+    {% block media %}
+      
+    {% endblock media %}
+      
+
   </head>
 
   <body>
@@ -29,6 +36,7 @@
           {% block sidebar %}
           <ul class="sidebar-nav">
             <li><a href="{% url 'places' %}">Places</a></li>
+            <li><a href="{% url 'add-place' %}">Create Place</a></li>
           </ul>
           {% endblock %}
         </div>
