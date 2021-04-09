@@ -36,6 +36,7 @@ load_dotenv()
 
 INSTALLED_APPS = [
     'leaflet',
+    'extra_views',
     'django.contrib.gis',
     'place.apps.PlaceConfig',
     'django.contrib.admin',
