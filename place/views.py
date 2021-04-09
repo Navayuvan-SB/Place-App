@@ -55,3 +55,8 @@ class EditPlaceView(UpdateWithInlinesView):
         return reverse('places')
 
 
+class DeletePlaceView(DeleteView):
+    model = Place
+
+    def get_success_url(self):
+        return reverse('places')
