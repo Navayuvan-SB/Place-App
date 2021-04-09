@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.contrib.gis.geos import Point
 
 from .models import Place, PlaceType
-from .forms import PlaceForm
 
 
 class PlaceListView(generic.ListView):
