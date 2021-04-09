@@ -36,7 +36,7 @@
 }
 
 .hero-view p {
-  font-size: 1.2rem;
+  font-size: 1.21rem;
 }
 
 .content ul {
@@ -240,7 +240,6 @@ input[type="button"] {
 .place-detail .actions a:nth-child(2) {
   background-color: #db4437;
 }
-
 
 .add-place .input-wrapper {
   display: flex;
