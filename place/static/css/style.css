@@ -240,3 +240,10 @@ input[type="button"] {
 .place-detail .actions a:nth-child(2) {
   background-color: #db4437;
 }
+
+
+.add-place .input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
