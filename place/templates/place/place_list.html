@@ -10,7 +10,7 @@
       <p>{{place.description}}</p>
       <div class="action">
         <i>{{place.address}}, {{place.city}}</i>
-        <a href="">View Place</a>
+        <a href="{% url 'place-detail' place.pk %}">View Place</a>
       </div>
     </div>
   </div>
