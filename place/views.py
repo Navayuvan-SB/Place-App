@@ -39,3 +39,19 @@ class AddPlaceView(CreateWithInlinesView):
     def get_success_url(self):
         return reverse('places')
 
+
+class EditPlaceView(UpdateWithInlinesView):
+    # form_class = PlaceForm
+    model = Place
+    template_name = 'place/place_form.html'
+    fields = ('__all__')
+    inlines = [PlaceTypeInline]
+
+    def form_valid(self, form):
+        form.instance.location = form.cleaned_data['location']
+        return super(EditPlaceView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('places')
+
+
