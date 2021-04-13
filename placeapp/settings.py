@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES_PROD = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'd9ntvua2io84sg',
@@ -98,21 +98,21 @@ DATABASES_PROD = {
 }
 
 
-DATABASES_DEV = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'placeapp',
-        'USER': 'yuvan',
-        'HOST': 'localhost',
-        'PASSWORD': 'yuvan',
-    }
-}
+# DATABASES_DEV = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'placeapp',
+#         'USER': 'yuvan',
+#         'HOST': 'localhost',
+#         'PASSWORD': 'yuvan',
+#     }
+# }
 
-DATABASES = {}
-if IS_PRODUCTION:
-    DATABASES = DATABASES_PROD
-else:
-    DATABASES = DATABASES_DEV
+# DATABASES = {}
+# if IS_PRODUCTION:
+#     DATABASES = DATABASES_PROD
+# else:
+#     DATABASES = DATABASES_DEV
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
