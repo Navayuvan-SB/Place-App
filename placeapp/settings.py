@@ -86,16 +86,13 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'HOST': 'localhost',
-        'PASSWORD': os.environ['DB_PASSWORD']
+        'NAME': 'd9ntvua2io84sg',
+        'USER': 'gcnbloujenewif',
+        'HOST': 'ec2-54-211-176-156.compute-1.amazonaws.com',
+        'PASSWORD': '6f7d659f0e2b32cd0878c786ab54a49a593d3be311ddc847fb5c9ddcadcf91f8',
+        'PORT': '5432',
     }
 }
-
-DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-
 
 
 # Password validation
