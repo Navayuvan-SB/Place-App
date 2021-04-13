@@ -132,3 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 django_heroku.settings(locals())
+
+
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
