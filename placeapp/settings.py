@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'placeapp',
+        'NAME': os.environ['DB_NAME'],
         'USER': os.environ['DB_USER'],
         'HOST': 'localhost',
         'PASSWORD': os.environ['DB_PASSWORD']
