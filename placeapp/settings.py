@@ -29,6 +29,8 @@ SECRET_KEY = '1x=&bu-ovh(j*h$sp+*@ur5p6qfzi*iweiz*y7&)z^4)o2i%(o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+IS_PRODUCTION = False
+
 ALLOWED_HOSTS = []
 
 load_dotenv()
@@ -83,7 +85,7 @@ WSGI_APPLICATION = 'placeapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES_PROD = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'd9ntvua2io84sg',
@@ -94,6 +96,22 @@ DATABASES = {
     }
 }
 
+
+DATABASES_DEV = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'placeapp',
+        'USER': 'yuvan',
+        'HOST': 'localhost',
+        'PASSWORD': 'yuvan',
+    }
+}
+
+DATABASES = {}
+if IS_PRODUCTION:
+    DATABASES = DATABASES_PROD
+else:
+    DATABASES = DATABASES_DEV
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
