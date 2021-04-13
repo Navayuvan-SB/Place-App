@@ -29,7 +29,7 @@ SECRET_KEY = '1x=&bu-ovh(j*h$sp+*@ur5p6qfzi*iweiz*y7&)z^4)o2i%(o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-IS_PRODUCTION = False
+IS_PRODUCTION = True
 
 ALLOWED_HOSTS = []
 
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters'
-
 ]
 
 MIDDLEWARE = [
