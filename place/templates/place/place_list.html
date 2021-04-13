@@ -1,21 +1,46 @@
 {% extends 'base_generic.html' %} {% block title %} Places {% endblock title %}
 {% block content %}
 
-<div class="places row">
-  {% for place in place_list %}
+<div class="places">
+  <div class="row">
+    <form method="GET" class="filter_form">
+      <div class="row">
+        <div class="col-md-3">
+          <p>Title</p>
+          {{filter.form.title__icontains}}
+        </div>
 
-  <div class="col-md-3">
-    <div class="place">
-      <h4>{{place.title}}</h4>
-      <p>{{place.description}}</p>
-      <div class="action">
-        <i>{{place.address}}, {{place.city}}</i>
-        <a href="{% url 'place-detail' place.pk %}">View Place</a>
+        <div class="col-md-3">
+          <p>City</p>
+          {{filter.form.city__icontains}}
+        </div>
+
+        <div class="col-md-3">
+          <p>Sort by</p>
+          {{filter.form.sort_by}}
+        </div>
+
+        <div class="col-md-3">
+          <button type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    {% for place in filter.qs %}
+
+    <div class="col-md-3">
+      <div class="place">
+        <h4>{{place.title}}</h4>
+        <p>{{place.description}}</p>
+        <div class="action">
+          <i>{{place.address}}, {{place.city}}</i>
+          <a href="{% url 'place-detail' place.pk %}">View Place</a>
+        </div>
       </div>
     </div>
+
+    {% endfor %}
   </div>
-
-  {% endfor %}
 </div>
-
 {% endblock content %}

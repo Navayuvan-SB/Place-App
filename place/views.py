@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSetFactory
 from django.urls import reverse
 
+from .filters import PlaceFilter
+
 from django.contrib.gis.geos import Point
 
 from .models import Place, PlaceType
@@ -11,6 +13,12 @@ from .models import Place, PlaceType
 
 class PlaceListView(generic.ListView):
     model = Place
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = PlaceFilter(
+            self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class PlaceDetailView(generic.DetailView):
@@ -25,7 +33,6 @@ class PlaceTypeInline(InlineFormSetFactory):
 
 
 class AddPlaceView(CreateWithInlinesView):
-    # form_class = PlaceForm
     model = Place
     template_name = 'place/place_form.html'
     fields = ('__all__')
