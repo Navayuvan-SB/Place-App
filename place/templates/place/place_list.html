@@ -43,4 +43,11 @@
     {% endfor %}
   </div>
 </div>
+
+<script>
+  $("#id_sort_by").change(() => {
+    $(".filter_form").submit(); 
+  });
+</script>
+
 {% endblock content %}
