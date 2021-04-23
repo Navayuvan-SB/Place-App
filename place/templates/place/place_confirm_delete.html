@@ -2,10 +2,13 @@
 
 <h1>Delete Place</h1>
 
-<p>Are you sure want to delete the place: <strong> {{place.title}} </strong>?</p>
+<p>
+  Are you sure want to delete the place: <strong> {{place.title}} </strong>?
+</p>
 
 <form action="" method="POST">
   {% csrf_token %}
+  <input type="button" value="Cancel" onclick="javascript:history.go(-1);" />
   <input type="submit" value="Yes, Delete" />
 </form>
 
