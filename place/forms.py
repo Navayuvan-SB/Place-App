@@ -12,9 +12,20 @@ class PlaceModelForm(forms.ModelForm):
             "location": forms.OSMWidget(attrs={"map_width": 800, "map_height": 500})
         }
 
-PlaceTypeFormSet = modelformset_factory(
-    PlaceType,
-    fields=("place_type",),
-    extra=2,
-    widgets={"place_type": forms.TextInput(attrs={"placeholder": "Eg. Tourism"})},
-)
+
+class PlaceTypeForm(forms.ModelForm):
+    class Meta:
+        model = PlaceType
+        fields = ("place_type",)
+        {
+            "place_type": forms.TextInput(
+                attrs={"placeholder": "Eg. Tourism", "required": "false"}
+            )
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PlaceTypeForm, self).__init__(*args, **kwargs)
+        self.fields["place_type"].required = False
+
+
+PlaceTypeFormSet = modelformset_factory(PlaceType, extra=2, form=PlaceTypeForm)

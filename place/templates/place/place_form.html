@@ -34,6 +34,7 @@
 
           {% for form in formset %}
           <div class="col-md-12 input-wrapper form-row">
+            {{ form.id }}
             {{form.place_type}}
             <input class="remove-form-row" type="button" value="-" />
           </div>

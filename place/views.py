@@ -67,6 +67,45 @@ def add_place_view(request):
     )
 
 
+def edit_place_view(request, pk):
+    template_name = "place/place_form.html"
+
+    if request.method == "GET":
+
+        place = Place.objects.get(pk=pk)
+        place_types = place.placetype_set.all()
+
+        place_form = PlaceModelForm(instance=place)
+        formset = PlaceTypeFormSet(queryset=place_types)
+
+    elif request.method == "POST":
+        place = Place.objects.get(pk=pk)
+        old_place_types = place.placetype_set.all()
+
+        place_form = PlaceModelForm(request.POST, instance=place)
+        formset = PlaceTypeFormSet(request.POST, queryset=old_place_types)
+
+        if place_form.is_valid() and formset.is_valid():
+            new_place = place_form.save()
+
+            update_deleted_place_type(old_place_types, formset)
+
+            for form in formset:
+                new_place_type = form.save(commit=False)
+
+                if isPlaceTypeEmpty(new_place_type):
+                    continue
+
+                new_place_type.place = new_place
+                new_place_type.save()
+
+            return redirect("place-detail", pk=new_place.pk)
+
+    return render(
+        request, template_name, {"place_form": place_form, "formset": formset}
+    )
+
+
 class EditPlaceView(UpdateWithInlinesView):
     # form_class = PlaceForm
     model = Place
@@ -87,3 +126,26 @@ class DeletePlaceView(DeleteView):
 
     def get_success_url(self):
         return reverse("places")
+
+
+def isPlaceTypeEmpty(new_place_type):
+    return str(new_place_type.place_type).strip() == ""
+
+
+def update_deleted_place_type(old_place_types, formset):
+
+    for old_place_type in old_place_types:
+        is_deleted = False
+        for form_cleaned_data in formset.cleaned_data:
+
+            if form_cleaned_data["id"] == old_place_type:
+                break
+
+            elif (
+                form_cleaned_data["id"] != old_place_type
+                and form_cleaned_data["id"] is not None
+            ):
+                is_deleted = True
+
+        if is_deleted:
+            old_place_type.delete()

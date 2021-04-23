@@ -20,9 +20,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('place/', include('place.urls')),
-    path('', RedirectView.as_view(url='place/', permanent=True)),
+    path("admin/", admin.site.urls),
+    path("place/", include("place.urls")),
+    path("", RedirectView.as_view(url="place/", permanent=True)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
