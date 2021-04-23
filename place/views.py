@@ -60,7 +60,7 @@ def add_place_view(request):
                 new_place_type.place = new_place
                 new_place_type.save()
 
-            return redirect("places")
+            return redirect("place-detail", pk=new_place.pk)
 
     return render(
         request, template_name, {"place_form": place_form, "formset": formset}
